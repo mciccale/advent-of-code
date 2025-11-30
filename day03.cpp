@@ -1,7 +1,11 @@
+#include "utils.hpp"
 #include <iostream>
+#include <ranges>
 
 int main()
 {
-  std::cout << "In the beginning, there was darkness.\n";
+  auto lines = read_lines(std::cin);
+  for (std::string_view s : lines | std::views::all)
+    std::cout << s << "\n";
   return 0;
 }
