@@ -1,2 +1,7 @@
 Attic/
 cookies.txt
+
+
+# Added by cargo
+
+/target
