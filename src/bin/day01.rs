@@ -1,10 +1,10 @@
-use std::io::{BufRead};
+use advent_of_code::rawln;
 
 fn get_delta(line: &str) -> i32 {
     line.replace("L", "-").replace("R", "").parse::<i32>().unwrap()
 }
 
-fn easy(lines: &[String]) -> i32 {
+fn easy(lines: &[&str]) -> i32 {
     lines.iter().fold((50, 0), |(dial, pwd), line| {
         let delta = get_delta(&line);
         (
@@ -14,7 +14,7 @@ fn easy(lines: &[String]) -> i32 {
     }).1
 }
 
-fn hard(lines: &[String]) -> i32 {
+fn hard(lines: &[&str]) -> i32 {
     lines.iter().fold((50, 0), |(dial, pwd), line| {
         let delta = get_delta(&line);
         let new_dial = dial + delta;
@@ -26,7 +26,11 @@ fn hard(lines: &[String]) -> i32 {
 }
 
 fn main() {
-    let lines: Vec<String> = std::io::stdin().lock().lines().map(Result::unwrap).collect();
+    let raw: Vec<String> = rawln();
+    let lines: Vec<&str> = raw
+        .iter()
+        .map(String::as_str)
+        .collect();
     println!("Part 1: {}", easy(&lines));
     println!("Part 2: {}", hard(&lines));
 }
